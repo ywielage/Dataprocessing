@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?> 
+	<data-set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<course> 
+		<CourseID>079D-0000-0351-17E2</CourseID> 
+		<Difficulty>expert</Difficulty> 
+		<Style>marioBros3</Style> 
+		<Maker>NolramImpro</Maker> 
+		<Title>Apocalipse 14:12</Title> 
+		<CreationDate>11-8-2017  00:00:00</CreationDate> 
+		<TimeRecord></TimeRecord>
+		<playerRecord></playerRecord>
+	</course> 
+	<player>
+		<PlayerID>PlayerID</PlayerID>
+		<PlayerImage>PlayerImage</PlayerImage>
+		<PlayerFlag>PlayerFlag</PlayerFlag>
+		<PlayerName>PlayerName</PlayerName>
+	</player>
+</data-set>
