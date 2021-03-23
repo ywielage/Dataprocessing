@@ -13,16 +13,25 @@
 		<xs:element type="xs:string" name="CreationDate"/>
 		<xs:element type="xs:string" name="TimeRecord"/>
 		<xs:element type="xs:string" name="PlayerRecord"/>
-            </xs:sequence>
-          </xs:complexType>
+     		<xs:sequence>
+ 			<xs:element name="player">
+          			<xs:complexType>
+            				<xs:sequence>
+              					<xs:element type="xs:integer" name="PlayerID"/>
+              					<xs:element type="xs:string" name="PlayerImage"/>
+              					<xs:element type="xs:string" name="PlayerFlag"/>
+              					<xs:element type="xs:string" name="PlayerName"/>
+						<xs:sequence>
+							<xs:element type="xs:integer" name="CourseID"/>
+              						<xs:element type="xs:string" name="Difficulty"/>
+							<xs:element type="xs:string" name="TimeRecord"/>
+							<xs:element type="xs:string" name="PlayerRecord"/>
+						</xs:sequence>	
+            		 	</xs:complexType>
+        		</xs:element>
+		</xs:sequence>
+		</xs:sequence>
         </xs:element>
-        <xs:element name="player">
-          <xs:complexType>
-            <xs:sequence>
-              	<xs:element type="xs:integer" name="PlayerID"/>
-              	<xs:element type="xs:string" name="PlayerImage"/>
-              	<xs:element type="xs:string" name="PlayerFlag"/>
-              	<xs:element type="xs:string" name="PlayerName"/>	
             </xs:sequence>
           </xs:complexType>
         </xs:element>
