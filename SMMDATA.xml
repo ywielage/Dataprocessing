@@ -17,8 +17,8 @@
 			<PlayedCourses>
 				<CourseID>079D-0000-0351-17E2</CourseID> 
 				<Difficulty>expert</Difficulty>
-				<TimeRecord></TimeRecord>
-				<PlayerRecord></PlayerRecord>
+				<TimeRecord>20</TimeRecord>
+				<PlayerRecord>30</PlayerRecord>
 			</PlayedCourses>	
 		</Player>
 	</course> 
