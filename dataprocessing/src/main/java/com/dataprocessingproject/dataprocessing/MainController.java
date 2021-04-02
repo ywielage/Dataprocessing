@@ -22,7 +22,7 @@ public class MainController {
     private PlayerRepository playerRepository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<PlayerModel> findCourseById(@PathVariable(value = "id") String id) {
+    public ResponseEntity<PlayerModel> findCourseById(@PathVariable(value = "id") String id) { // Alle spelers ophalen welke deze course hebben gespeeld
         Optional<CourseModel> course = courseRepository.findById(id);
 
         if(course.isPresent()) { // Hier dan de maker ophalen en laten zien

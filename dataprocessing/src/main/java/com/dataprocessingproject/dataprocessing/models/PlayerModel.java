@@ -5,8 +5,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "players")
-public class PlayerModel {
+@Table(name = "players") // Tabel waar data van wordt opgehaald
+public class PlayerModel { // Haalt data op en zet deze in dit model
     private String id;
     private String image;
     private String flag;

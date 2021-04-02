@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/courseRecords")
-public class CourseRecordController {
+@RequestMapping("/api/courseRecords")// Geeft locatie aan
+public class CourseRecordController { // Geeft alle fucnties van courseRecords aan
     @Autowired
     private CourseRecordRepository courseRecordRepository;
 

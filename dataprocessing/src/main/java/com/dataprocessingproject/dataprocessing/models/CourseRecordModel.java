@@ -5,8 +5,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "records")
-public class CourseRecordModel {
+@Table(name = "records") // Tabel waar data van wordt opgehaald
+public class CourseRecordModel { // Haalt data op en zet deze in dit model
     private String date;
     private String id;
     private String player;

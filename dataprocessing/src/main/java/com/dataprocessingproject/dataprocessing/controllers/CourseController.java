@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/courses")
-public class CourseController {
+@RequestMapping("/api/courses")// Geeft locatie aan
+public class CourseController { // geeft alle functies van Course aan
     @Autowired
     private CourseRepository courseRepository;
 

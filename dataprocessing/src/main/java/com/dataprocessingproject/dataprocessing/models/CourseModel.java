@@ -3,8 +3,8 @@ package com.dataprocessingproject.dataprocessing.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "courses")
-public class CourseModel {
+@Table(name = "courses") // Tabel waar data van wordt opgehaald
+public class CourseModel { // Haalt data op en zet deze in dit model
     private String id;
     private String difficulty;
     private String gameStyle;

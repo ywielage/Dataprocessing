@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/players")
-public class PlayerController {
+@RequestMapping("/api/players") // Geeft locatie aan
+public class PlayerController { // Geeft alle functies van de player aan
     @Autowired
     private PlayerRepository playerRepository;
 
