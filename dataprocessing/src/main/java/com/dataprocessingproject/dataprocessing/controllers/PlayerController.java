@@ -4,12 +4,11 @@ package com.dataprocessingproject.dataprocessing.controllers;
 import com.dataprocessingproject.dataprocessing.models.PlayerModel;
 import com.dataprocessingproject.dataprocessing.repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/players") // Geeft locatie aan
@@ -22,15 +21,68 @@ public class PlayerController { // Geeft alle functies van de player aan
         return (List<PlayerModel>) playerRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PlayerModel> findPlayerById(@PathVariable(value = "id") String id) {
-        Optional<PlayerModel> player = playerRepository.findById(id);
+//    @GetMapping("/id/{id}")
+//    public ResponseEntity<PlayerModel> findPlayerById(@PathVariable(value = "id") String id) {
+//        Optional<PlayerModel> player = playerRepository.findById(id);
+//
+//        if(player.isPresent()) {
+//            return ResponseEntity.ok().body(player.get());
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//
+//    }
 
-        if(player.isPresent()) {
-            return ResponseEntity.ok().body(player.get());
-        } else {
-            return ResponseEntity.notFound().build();
+    @GetMapping("/id/{id}")
+    public List<PlayerModel> findPlayersById(@PathVariable(value = "id") String id) { // Pakt alle spelers met dit id.
+        List<PlayerModel> players = (List<PlayerModel>) playerRepository.findAll();
+        List<PlayerModel> foundPlayers = new ArrayList<>();
+
+        for(PlayerModel p : players) {
+            if(p.getId().equals(id)) {
+                foundPlayers.add(p);
+            }
         }
+        return foundPlayers;
+    }
+
+    @GetMapping("/flag/{flag}")
+    public List<PlayerModel> findPlayersByFlag(@PathVariable(value = "flag") String flag) { // Pakt alle spelers met dit id.
+        List<PlayerModel> players = (List<PlayerModel>) playerRepository.findAll();
+        List<PlayerModel> foundPlayers = new ArrayList<>();
+
+        for(PlayerModel p : players) {
+            if(p.getFlag().equals(flag)) {
+                foundPlayers.add(p);
+            }
+        }
+        return foundPlayers;
+    }
+
+    @GetMapping("/name/{name}")
+    public List<PlayerModel> findPlayersByName(@PathVariable(value = "name") String name) { // Pakt alle spelers met dit id.
+        List<PlayerModel> players = (List<PlayerModel>) playerRepository.findAll();
+        List<PlayerModel> foundPlayers = new ArrayList<>();
+
+        for(PlayerModel p : players) {
+            if(p.getName().equals(name)) {
+                foundPlayers.add(p);
+            }
+        }
+        return foundPlayers;
+    }
+
+    @GetMapping("/image/{image}")
+    public List<PlayerModel> findPlayersByImage(@PathVariable(value = "image") String image) { // Pakt alle spelers met dit id.
+        List<PlayerModel> players = (List<PlayerModel>) playerRepository.findAll();
+        List<PlayerModel> foundPlayers = new ArrayList<>();
+
+        for(PlayerModel p : players) {
+            if(p.getImage().equals(image)) {
+                foundPlayers.add(p);
+            }
+        }
+        return foundPlayers;
     }
 
     @PostMapping

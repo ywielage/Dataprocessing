@@ -7,17 +7,17 @@ import javax.persistence.*;
 public class CourseModel { // Haalt data op en zet deze in dit model
     private String id;
     private String difficulty;
-    private String gameStyle;
+    private String gamestyle;
     private String maker;
     private String title;
     private String thumbnail;
     private String image;
     private String creation;
 
-    public CourseModel(String id, String difficulty, String gameStyle, String maker, String title, String thumbnail, String image, String creation) {
+    public CourseModel(String id, String difficulty, String gamestyle, String maker, String title, String thumbnail, String image, String creation) {
         this.id = id;
         this.difficulty = difficulty;
-        this.gameStyle = gameStyle;
+        this.gamestyle = gamestyle;
         this.maker = maker;
         this.title = title;
         this.thumbnail = thumbnail;
@@ -46,12 +46,12 @@ public class CourseModel { // Haalt data op en zet deze in dit model
         this.difficulty = difficulty;
     }
 
-    public String getGameStyle() {
-        return gameStyle;
+    public String getGamestyle() {
+        return gamestyle;
     }
 
-    public void setGameStyle(String gameStyle) {
-        this.gameStyle = gameStyle;
+    public void setGamestyle(String gamestyle) {
+        this.gamestyle = gamestyle;
     }
 
     public String getMaker() {
