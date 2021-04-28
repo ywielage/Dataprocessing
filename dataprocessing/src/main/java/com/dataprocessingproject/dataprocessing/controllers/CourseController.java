@@ -35,6 +35,12 @@ public class CourseController { // geeft alle functies van Course aan
 //        }
 //    }
 
+    @GetMapping("/amount")
+    public Integer getAmountOfCourses(){
+        List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
+        return courses.size();
+    }
+
     @GetMapping("/id/{id}")
     public List<CourseModel> findCoursesById(@PathVariable(value = "id") String id) { // Pakt alle records met deze speler.
         List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
