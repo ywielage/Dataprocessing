@@ -3,6 +3,7 @@ package com.dataprocessingproject.dataprocessing.models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "records") // Tabel waar data van wordt opgehaald
@@ -11,6 +12,7 @@ public class CourseRecordModel { // Haalt data op en zet deze in dit model
     private String id;
     private String player;
     private String record;
+    private List<PlayerModel> players;
 
     public CourseRecordModel(String date, String id, String player, String record) {
         this.date = date;

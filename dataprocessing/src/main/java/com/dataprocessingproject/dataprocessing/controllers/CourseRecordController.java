@@ -3,10 +3,8 @@ package com.dataprocessingproject.dataprocessing.controllers;
 import com.dataprocessingproject.dataprocessing.models.CourseRecordModel;
 import com.dataprocessingproject.dataprocessing.repositories.CourseRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,19 +20,8 @@ public class CourseRecordController { // Geeft alle fucnties van courseRecords a
         return (List<CourseRecordModel>) courseRecordRepository.findAll();
     }
 
-//    @GetMapping("/id/{id}")
-//    public ResponseEntity<CourseRecordModel> findCourseRecordByID(@PathVariable(value = "id") String id) {
-//        Optional<CourseRecordModel> courseRecord = courseRecordRepository.findById(id);
-//
-//        if(courseRecord.isPresent()) {
-//            return ResponseEntity.ok().body(courseRecord.get());
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-
     @GetMapping("/id/{id}")
-    public List<CourseRecordModel> findRecordsById(@PathVariable(value = "id") String id) { // Pakt alle records met dit id.
+    public List<CourseRecordModel> findRecordsById(@PathVariable(value = "id") String id) { // Pakt alle records met dit id. TODO gebruiken voor JSON
         List<CourseRecordModel> records = (List<CourseRecordModel>) courseRecordRepository.findAll();
         List<CourseRecordModel> foundRecords = new ArrayList<>();
 
@@ -85,4 +72,29 @@ public class CourseRecordController { // Geeft alle fucnties van courseRecords a
         return foundRecords;
     }
 
+    @PostMapping
+    public CourseRecordModel saveCourseRecord (@Validated @RequestBody CourseRecordModel courseRecord){
+        return courseRecordRepository.save(courseRecord);
+    }
+
+    @PutMapping("/courseRecords/{id}")
+    public CourseRecordModel replaceCourseRecord(@RequestBody CourseRecordModel newCourseRecordModel, @PathVariable String id) {
+        return courseRecordRepository.findById(id)
+                .map(courseRecordModel -> {
+                    courseRecordModel.setDate(newCourseRecordModel.getDate());
+                    courseRecordModel.setId(newCourseRecordModel.getId());
+                    courseRecordModel.setPlayer(newCourseRecordModel.getPlayer());
+                    courseRecordModel.setRecord(newCourseRecordModel.getRecord());
+                    return courseRecordRepository.save(courseRecordModel);
+                })
+                .orElseGet(() -> {
+                        newCourseRecordModel.setId(id);
+                        return courseRecordRepository.save(newCourseRecordModel);
+        });
+    }
+
+    @DeleteMapping("/courseRecords/{id}")
+    public void deleteCourseRecord(@PathVariable String id) {
+        courseRecordRepository.deleteById(id);
+    }
 }

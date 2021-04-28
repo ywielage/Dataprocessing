@@ -1,0 +1,16 @@
+{ "CourseID": "",
+  "Difficulty" : "",
+  "Maker" : "",
+  "Title": "",
+  "Gamestyle": "",
+  "Thumbnail": "",
+  "Image": "",
+  "Creation": "",
+  "TimeRecord": { "Date": "",
+                  "Score": "",
+                  "Player": { "PlayerId": "",
+                              "Image": "",
+                              "Flag": "",
+                              "Name": ""}
+            }
+}

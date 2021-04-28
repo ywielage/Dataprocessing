@@ -89,4 +89,25 @@ public class PlayerController { // Geeft alle functies van de player aan
     public PlayerModel saveCourse(@Validated @RequestBody PlayerModel player) {
         return playerRepository.save(player);
     }
+
+    @PutMapping("/players/{id}")
+    public PlayerModel replacePlayer(@RequestBody PlayerModel newPlayerModel, @PathVariable String id) {
+        return playerRepository.findById(id)
+                .map(playerModel -> {
+                    playerModel.setId(newPlayerModel.getId());
+                    playerModel.setImage(newPlayerModel.getImage());
+                    playerModel.setFlag(newPlayerModel.getFlag());
+                    playerModel.setName(newPlayerModel.getName());
+                    return playerRepository.save(playerModel);
+                })
+                .orElseGet(() -> {
+                    newPlayerModel.setId(id);
+                    return playerRepository.save(newPlayerModel);
+                });
+    }
+
+    @DeleteMapping("/players/{id}")
+    public void deleteCourse(@PathVariable String id) {
+        playerRepository.deleteById(id);
+    }
 }

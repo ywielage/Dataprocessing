@@ -1,13 +1,16 @@
 package com.dataprocessingproject.dataprocessing.controllers;
 
 import com.dataprocessingproject.dataprocessing.models.CourseModel;
+import com.dataprocessingproject.dataprocessing.models.CourseRecordModel;
 import com.dataprocessingproject.dataprocessing.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/courses")// Geeft locatie aan
@@ -21,7 +24,7 @@ public class CourseController { // geeft alle functies van Course aan
         return (List<CourseModel>) courseRepository.findAll();
     }
 
-//    @GetMapping("/id/{id}")
+//    @GetMapping("/idone/{id}")
 //    public ResponseEntity<CourseModel> findCourseById(@PathVariable(value = "id") String id) {
 //        Optional<CourseModel> course = courseRepository.findById(id);
 //
@@ -136,8 +139,45 @@ public class CourseController { // geeft alle functies van Course aan
         return foundCourses;
     }
 
+    @GetMapping("/highscore/{id}")
+    public List<CourseRecordModel> findHighscoreById(@PathVariable(value = "id") String id) {
+        Optional<CourseModel> course = courseRepository.findById(id);
+
+        ResponseEntity<CourseModel> re;
+
+        re = course.map(courseModel -> ResponseEntity.ok().body(courseModel)).orElseGet(() -> ResponseEntity.notFound().build());
+
+        CourseRecordController crc = new CourseRecordController();
+        return crc.findRecordsById(re.getBody().getId());
+    }
+
     @PostMapping
     public CourseModel saveCourse(@Validated @RequestBody CourseModel course){
         return courseRepository.save(course);
+    }
+
+    @PutMapping("/courses/{id}")
+    public CourseModel replaceCourse(@RequestBody CourseModel newCourseModel, @PathVariable String id) {
+        return courseRepository.findById(id)
+                .map(courseModel -> {
+                    courseModel.setId(newCourseModel.getId());
+                    courseModel.setDifficulty(newCourseModel.getDifficulty());
+                    courseModel.setGamestyle(newCourseModel.getGamestyle());
+                    courseModel.setMaker(newCourseModel.getMaker());
+                    courseModel.setTitle(newCourseModel.getTitle());
+                    courseModel.setThumbnail(newCourseModel.getThumbnail());
+                    courseModel.setImage(newCourseModel.getImage());
+                    courseModel.setCreation(newCourseModel.getCreation());
+                   return courseRepository.save(courseModel);
+                })
+                .orElseGet(() -> {
+                    newCourseModel.setId(id);
+                    return courseRepository.save(newCourseModel);
+                });
+    }
+
+    @DeleteMapping("/courses/{id}")
+    public void deleteCourse(@PathVariable String id) {
+        courseRepository.deleteById(id);
     }
 }
