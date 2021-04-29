@@ -19,6 +19,7 @@ public class CourseController { // geeft alle functies van Course aan
     @Autowired
     private CourseRepository courseRepository;
 
+    @CrossOrigin
     @GetMapping
     public List<CourseModel> findallCourses(){
         return (List<CourseModel>) courseRepository.findAll();
@@ -35,12 +36,15 @@ public class CourseController { // geeft alle functies van Course aan
 //        }
 //    }
 
+
+    @CrossOrigin
     @GetMapping("/amount")
     public Integer getAmountOfCourses(){
         List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
         return courses.size();
     }
 
+    @CrossOrigin
     @GetMapping("/id/{id}")
     public List<CourseModel> findCoursesById(@PathVariable(value = "id") String id) { // Pakt alle records met deze speler.
         List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
@@ -54,6 +58,7 @@ public class CourseController { // geeft alle functies van Course aan
         return foundCourses;
     }
 
+    @CrossOrigin
     @GetMapping("/difficulty/{difficulty}")
     public List<CourseModel> findCoursesByDifficulty(@PathVariable(value = "difficulty") String difficulty) { // Pakt alle records met deze speler.
         List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
@@ -67,6 +72,7 @@ public class CourseController { // geeft alle functies van Course aan
         return foundCourses;
     }
 
+    @CrossOrigin
     @GetMapping("/gamestyle/{gamestyle}")
     public List<CourseModel> findCoursesByGamestyle(@PathVariable(value = "gamestyle") String gamestyle) { // Pakt alle records met deze speler.
         List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
@@ -80,6 +86,7 @@ public class CourseController { // geeft alle functies van Course aan
         return foundCourses;
     }
 
+    @CrossOrigin
     @GetMapping("/maker/{maker}")
     public List<CourseModel> findCoursesByMaker(@PathVariable(value = "maker") String maker) { // Pakt alle records met deze speler.
         List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
@@ -93,6 +100,7 @@ public class CourseController { // geeft alle functies van Course aan
         return foundCourses;
     }
 
+    @CrossOrigin
     @GetMapping("/title/{title}")
     public List<CourseModel> findCoursesByTitle(@PathVariable(value = "title") String title) { // Pakt alle records met deze speler.
         List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
@@ -106,6 +114,7 @@ public class CourseController { // geeft alle functies van Course aan
         return foundCourses;
     }
 
+    @CrossOrigin
     @GetMapping("/thumbnail/{thumbnail}")
     public List<CourseModel> findCoursesByThumbnail(@PathVariable(value = "thumbnail") String thumbnail) { // Pakt alle records met deze speler.
         List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
@@ -119,6 +128,7 @@ public class CourseController { // geeft alle functies van Course aan
         return foundCourses;
     }
 
+    @CrossOrigin
     @GetMapping("/image/{image}")
     public List<CourseModel> findCoursesByImage(@PathVariable(value = "image") String image) { // Pakt alle records met deze speler.
         List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
@@ -132,6 +142,7 @@ public class CourseController { // geeft alle functies van Course aan
         return foundCourses;
     }
 
+    @CrossOrigin
     @GetMapping("/creation/{creation}")
     public List<CourseModel> findCoursesByCreation(@PathVariable(value = "creation") String creation) { // Pakt alle records met deze speler.
         List<CourseModel> courses = (List<CourseModel>) courseRepository.findAll();
@@ -145,6 +156,7 @@ public class CourseController { // geeft alle functies van Course aan
         return foundCourses;
     }
 
+    @CrossOrigin
     @GetMapping("/highscore/{id}")
     public List<CourseRecordModel> findHighscoreById(@PathVariable(value = "id") String id) {
         Optional<CourseModel> course = courseRepository.findById(id);

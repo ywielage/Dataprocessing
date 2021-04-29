@@ -15,11 +15,13 @@ public class CourseRecordController { // Geeft alle fucnties van courseRecords a
     @Autowired
     private CourseRecordRepository courseRecordRepository;
 
+    @CrossOrigin
     @GetMapping
     public List<CourseRecordModel> findallCourseRecords(){
         return (List<CourseRecordModel>) courseRecordRepository.findAll();
     }
 
+    @CrossOrigin
     @GetMapping("/id/{id}")
     public List<CourseRecordModel> findRecordsById(@PathVariable(value = "id") String id) { // Pakt alle records met dit id. TODO gebruiken voor JSON
         List<CourseRecordModel> records = (List<CourseRecordModel>) courseRecordRepository.findAll();
@@ -33,6 +35,7 @@ public class CourseRecordController { // Geeft alle fucnties van courseRecords a
         return foundRecords;
     }
 
+    @CrossOrigin
     @GetMapping("/date/{date}")
     public List<CourseRecordModel> findRecordsByDate(@PathVariable(value = "date") String date) { // Pakt alle records met deze date.
         List<CourseRecordModel> records = (List<CourseRecordModel>) courseRecordRepository.findAll();
@@ -46,6 +49,7 @@ public class CourseRecordController { // Geeft alle fucnties van courseRecords a
         return foundRecords;
     }
 
+    @CrossOrigin
     @GetMapping("/player/{player}")
     public List<CourseRecordModel> findRecordsByPlayer(@PathVariable(value = "player") String player) { // Pakt alle records met deze speler.
         List<CourseRecordModel> records = (List<CourseRecordModel>) courseRecordRepository.findAll();
@@ -59,6 +63,7 @@ public class CourseRecordController { // Geeft alle fucnties van courseRecords a
         return foundRecords;
     }
 
+    @CrossOrigin
     @GetMapping("/record/{record}")
     public List<CourseRecordModel> findRecordsByRecord(@PathVariable(value = "record") String record) { // Pakt alle records met deze record.
         List<CourseRecordModel> records = (List<CourseRecordModel>) courseRecordRepository.findAll();
@@ -72,11 +77,13 @@ public class CourseRecordController { // Geeft alle fucnties van courseRecords a
         return foundRecords;
     }
 
+    @CrossOrigin
     @PostMapping
     public CourseRecordModel saveCourseRecord (@Validated @RequestBody CourseRecordModel courseRecord){
         return courseRecordRepository.save(courseRecord);
     }
 
+    @CrossOrigin
     @PutMapping("/courseRecords/{id}")
     public CourseRecordModel replaceCourseRecord(@RequestBody CourseRecordModel newCourseRecordModel, @PathVariable String id) {
         return courseRecordRepository.findById(id)

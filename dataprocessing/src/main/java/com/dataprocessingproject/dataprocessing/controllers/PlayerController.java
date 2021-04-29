@@ -16,6 +16,7 @@ public class PlayerController { // Geeft alle functies van de player aan
     @Autowired
     private PlayerRepository playerRepository;
 
+    @CrossOrigin
     @GetMapping
     public List<PlayerModel> findallPlayers(){
         return (List<PlayerModel>) playerRepository.findAll();
@@ -33,6 +34,7 @@ public class PlayerController { // Geeft alle functies van de player aan
 //
 //    }
 
+    @CrossOrigin
     @GetMapping("/id/{id}")
     public List<PlayerModel> findPlayersById(@PathVariable(value = "id") String id) { // Pakt alle spelers met dit id.
         List<PlayerModel> players = (List<PlayerModel>) playerRepository.findAll();
@@ -46,6 +48,7 @@ public class PlayerController { // Geeft alle functies van de player aan
         return foundPlayers;
     }
 
+    @CrossOrigin
     @GetMapping("/flag/{flag}")
     public List<PlayerModel> findPlayersByFlag(@PathVariable(value = "flag") String flag) { // Pakt alle spelers met dit id.
         List<PlayerModel> players = (List<PlayerModel>) playerRepository.findAll();
@@ -59,6 +62,7 @@ public class PlayerController { // Geeft alle functies van de player aan
         return foundPlayers;
     }
 
+    @CrossOrigin
     @GetMapping("/name/{name}")
     public List<PlayerModel> findPlayersByName(@PathVariable(value = "name") String name) { // Pakt alle spelers met dit id.
         List<PlayerModel> players = (List<PlayerModel>) playerRepository.findAll();
@@ -72,6 +76,7 @@ public class PlayerController { // Geeft alle functies van de player aan
         return foundPlayers;
     }
 
+    @CrossOrigin
     @GetMapping("/image/{image}")
     public List<PlayerModel> findPlayersByImage(@PathVariable(value = "image") String image) { // Pakt alle spelers met dit id.
         List<PlayerModel> players = (List<PlayerModel>) playerRepository.findAll();
