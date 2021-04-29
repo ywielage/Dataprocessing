@@ -9,16 +9,19 @@
 <body>
 	<div class="container">
 		<canvas id="myChart"></canvas>
+		<canvas id="myChart2"></canvas>
 	</div>
 
 	<script>
-
-		async function getData(index) {
+		// Haalt alle courses op
+		async function getData() {
 			const response = await fetch("http://localhost:8080/api/courses");
 			const data = await response.json();
-			return data[index].creation;
+			return data;
 		}
 
+
+		// Haalt op wanneer courses zijn aangemaakt, en zit dit om naar maanden. Wordt daarna visueel laten zien in een grafiek
 		async function getCreationDates() {
 
 			let Jan = 0;
@@ -151,6 +154,32 @@
 				}
 			}
 		});
+		})()
+	</script>
+	<script>
+
+		// Haalt alle vlaggen (Landen/Regio's) op waar spelers vandaan komen. Wordt laten zien binnen de console zosnel als dat alles geladen is.
+		async function getFlags() {
+			const response = await fetch("http://localhost:8080/api/players");
+			const data = await response.json();
+
+			let flags = [];
+
+			for(x=0;x<100000;x++) {
+				const obj = data[x].flag;
+				const flag = obj.split('-');
+				if(!flags.includes(flag[0])){
+					flags.push(flag[0]);
+				} else if(flags.includes(flag[0])) {
+
+				}
+			}
+			return flags;
+		}
+
+		(async () => {
+			let flags = await getFlags();
+			console.log(flags)
 		})()
 	</script>
 </body>
