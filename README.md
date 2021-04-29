@@ -15,8 +15,9 @@ Made as an assignment for subject Dataprocessing.
 
 1. Make sure your preferred IDE is up-to-date.
 2. Use xampp to create a local connection
-3. Import the database and name it: "smmdb"
-4. Check the documentation for further information.
+3. Import the database and name it: "smmdb". The database can be downloaded at: https://drive.google.com/file/d/1Q60_UhB8kdUXNq81j_7Q8ysocOhatYfP/view?usp=sharing
+4. Open the HTML file within the Front End folder to see a visualized graph using data from the API.
+5. Check the documentation for further information.
 
 ## Author
 
